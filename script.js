@@ -22,6 +22,7 @@ function gameLoop(){
     lastTime = currentTime;
     update(dt);
     draw();
+    requestAnimationFrame(gameLoop);
 }
 
 function update(dt){
@@ -33,4 +34,4 @@ function draw(){
     ctx.fillRect(x,y,canvas.width/2,canvas.height/2);
 }
 
-setInterval(gameLoop, 4);
+gameLoop();
