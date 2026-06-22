@@ -19,6 +19,7 @@ canvas.setPointerCapture(e.pointerId);
 });
 canvas.addEventListener("pointerup", (e) => {
     dragging = false;
+    canvas.releasePointerCapture(e.pointerId);
 })
 canvas.addEventListener("pointermove", (e)=> {
     if(dragging == true){
