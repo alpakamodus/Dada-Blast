@@ -4,10 +4,8 @@ const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth - 30;
 canvas.height = window.innerHeight - 30;
 
-ctx.fillRect(canvas.width/2-canvas.width/4,canvas.height/2-canvas.height/4,canvas.width/2,canvas.height/2);
-
-let x;
-let y;
+let x = canvas.width/2-canvas.width/4;
+let y = canvas.height/2-canvas.height/4;
 
 let lastTime = performance.now();
 
