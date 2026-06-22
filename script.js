@@ -9,6 +9,8 @@ ctx.fillRect(canvas.width/2-canvas.width/4,canvas.height/2-canvas.height/4,canva
 let x;
 let y;
 
+let lastTime = performance.now();
+
 canvas.addEventListener("pointerdown", (e)=> {
 x = e.clientX;
 y = e.clientY;
@@ -28,7 +30,7 @@ function update(dt){
 function draw(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
 
-    ctx.fillRect(canvas.width/2-canvas.width/4,canvas.height/2-canvas.height/4,canvas.width/2,canvas.height/2);
+    ctx.fillRect(x,y,canvas.width/2,canvas.height/2);
 }
 
 setInterval(gameLoop, 4);
