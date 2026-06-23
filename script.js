@@ -84,9 +84,11 @@ function draw(){
     ctx.lineWidth = 2;
     ctx.strokeRect(board2X,board2Y,boardSize,boardSize/3);
 
-    ctx.strokeRect(block1X-boardSize/6/2,blockY-boardSize/6/2,boardSize/6,boardSize/6);
-    ctx.strokeRect(block2X-boardSize/6/2,blockY-boardSize/6/2,boardSize/6,boardSize/6);
-    ctx.strokeRect(block3X-boardSize/6/2,blockY-boardSize/6/2,boardSize/6,boardSize/6);
+    for(let i = 0; i < blockSize.length;i++){
+        if(blocks[i].placed == false){
+            ctx.strokeRect(blocks[i].x-boardSize/6/2,blocks[i].y-boardSize/6/2,blockSize,blockSize);
+        }
+    }
 }
 
 gameLoop();
