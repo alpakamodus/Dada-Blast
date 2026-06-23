@@ -81,8 +81,8 @@ function checkForSnap(b){
 for (let y = 0; y < 8; y++) {
   for (let x = 0; x < 8; x++) {
     if(Math.abs(b.x-(boardX+(x*blockSize+blockSize/2)))<=blockSize/4 && Math.abs(b.y-(boardY+(y*blockSize+blockSize/2)))<=blockSize/4){
-b.x = x*blockSize+blockSize/2;
-b.y = y*blockSize+blockSize/2;
+b.x = boardX+x*blockSize+blockSize/2;
+b.y = boardY+y*blockSize+blockSize/2;
 return true;
 }
 }
