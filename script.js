@@ -47,7 +47,7 @@ document.body.addEventListener("touchmove", (e) => {
 
 canvas.addEventListener("pointerdown", (e)=> {
 blocks.forEach(b => {
-    if(e.clientX >= b.x-blockSize/2 && e.clientX <= b.x+blockSize/2 && e.clientY >= b.y-blockSize/2 && e.clientY <= b.y+blockSize/2){
+    if(e.clientX >= b.x-blockSize/2 && e.clientX <= b.x+blockSize/2 && e.clientY >= b.y-blockSize/2 && e.clientY <= b.y+blockSize/2 && !b.placed){
 b.x = e.clientX;
 b.y = e.clientY;
 }
@@ -80,7 +80,7 @@ const grid = Array(8).fill().map(() => Array(8).fill(0));
 function checkForSnap(b){
 for (let y = 0; y < 8; y++) {
   for (let x = 0; x < 8; x++) {
-    if(Math.abs(b.x-(x*blockSize+blockSize/2))<=blockSize/4 && Math.abs(b.y-(y*blockSize+blockSize/2))<=blockSize/4){
+    if(Math.abs(b.x-(boardX+(x*blockSize+blockSize/2)))<=blockSize/4 && Math.abs(b.y-(boardY(y*blockSize+blockSize/2)))<=blockSize/4){
 b.x = x*blockSize+blockSize/2;
 b.y = y*blockSize+blockSize/2;
 return true;
