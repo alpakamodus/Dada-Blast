@@ -25,35 +25,6 @@ let lastTime = performance.now();
 
 let dragging = false;
 
-document.body.addEventListener("touchmove", (e) => {
-    e.preventDefault();
-}, { passive: false });
-
-canvas.addEventListener("pointerdown", (e)=> {
-/**blocks.forEach(b => {
-    if(e.clientX >= b.x-blockSize/2 && e.clientX <= b.x+blockSize/2 && e.clientY >= b.y-blockSize/2 && e.clientY <= b.y+blockSize/2){
-b.x = e.clientX;
-b.y = e.clientY;
-}
-});**/
-dragging = true;
-canvas.setPointerCapture(e.pointerId);
-});
-canvas.addEventListener("pointerup", (e) => {
-    dragging = false;
-    canvas.releasePointerCapture(e.pointerId);
-})
-canvas.addEventListener("pointermove", (e)=> {
-    if(dragging == true){
-        blocks.forEach(b => {
-    if(e.clientX >= b.x-blockSize/2 && e.clientX <= b.x+blockSize/2 && e.clientY >= b.y-blockSize/2 && e.clientY <= b.y+blockSize/2){
-b.x = e.clientX;
-b.y = e.clientY;
-}
-});
-    }
-});
-
 const blocks = [{
     x: block1X,
     y: blockY,
@@ -69,6 +40,55 @@ const blocks = [{
     y: blockY,
     placed: false,
 }];
+
+document.body.addEventListener("touchmove", (e) => {
+    e.preventDefault();
+}, { passive: false });
+
+canvas.addEventListener("pointerdown", (e)=> {
+blocks.forEach(b => {
+    if(e.clientX >= b.x-blockSize/2 && e.clientX <= b.x+blockSize/2 && e.clientY >= b.y-blockSize/2 && e.clientY <= b.y+blockSize/2){
+b.x = e.clientX;
+b.y = e.clientY;
+}
+});
+dragging = true;
+canvas.setPointerCapture(e.pointerId);
+});
+canvas.addEventListener("pointerup", (e) => {
+    canvas.releasePointerCapture(e.pointerId);
+dragging = false;
+blocks.forEach(b => {
+    if(e.clientX >= b.x-blockSize/2 && e.clientX <= b.x+blockSize/2 && e.clientY >= b.y-blockSize/2 && e.clientY <= b.y+blockSize/2){
+b.placed = checkForSnap(b);
+}
+});
+});
+canvas.addEventListener("pointermove", (e)=> {
+    if(dragging == true){
+        blocks.forEach(b => {
+    if(e.clientX >= b.x-blockSize/2 && e.clientX <= b.x+blockSize/2 && e.clientY >= b.y-blockSize/2 && e.clientY <= b.y+blockSize/2){
+b.x = e.clientX;
+b.y = e.clientY;
+}
+});
+    }
+});
+
+const grid = Array(8).fill().map(() => Array(8).fill(0));
+
+function checkForSnap(b){
+for (let y = 0; y < 8; y++) {
+  for (let x = 0; x < 8; x++) {
+    if(Math.abs(b.x-(x*blockSize+blockSize/2))<=blockSize/4 && Math.abs(b.y-(y*blockSize+blockSize/2))<=blockSize/4){
+b.x = x*blockSize+blockSize/2;
+b.y = y*blockSize+blockSize/2;
+return true;
+}
+}
+}
+return false;
+}
 
 function update(dt){
 
