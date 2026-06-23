@@ -46,7 +46,21 @@ canvas.addEventListener("pointermove", (e)=> {
     }
 });
 
-const blocks = [];
+const blocks = [{
+    x: block1X,
+    y: blockY,
+    placed: false,
+},
+{
+    x: block2X,
+    y: blockY,
+    placed: false,
+},
+{
+    x: block3X,
+    y: blockY,
+    placed: false,
+}];
 
 function update(dt){
 
@@ -77,9 +91,9 @@ function draw(){
     ctx.lineWidth = 2;
     ctx.strokeRect(board2X,board2Y,boardSize,boardSize/3);
 
-    for(let i = 0; i < blocks.length;i++){
+    for(let i = 0; i < blockSize.length;i++){
         if(blocks[i].placed == false){
-            ctx.strokeRect(blocks[i].x-blockSize/2,blocks[i].y-blockSize/2,blockSize,blockSize);
+            ctx.strokeRect(blocks[i].x-boardSize/6/2,blocks[i].y-boardSize/6/2,blockSize,blockSize);
         }
     }
 }
