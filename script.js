@@ -119,10 +119,9 @@ function draw(){
     ctx.lineWidth = 2;
     ctx.strokeRect(board2X,board2Y,boardSize,boardSize/3);
 
-    for(let i = 0; i < blocks.length;i++){
-        if(blocks[i].placed == false){
+    for(let i = 0; i < blocks.length;i++){
             ctx.strokeRect(blocks[i].x-blockSize/2,blocks[i].y-blockSize/2,blockSize,blockSize);
-        }
+
     }
 }
 
