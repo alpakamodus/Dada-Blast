@@ -46,14 +46,7 @@ canvas.addEventListener("pointermove", (e)=> {
     }
 });
 
-function gameLoop(){
-    let currentTime = performance.now();
-    let dt = (currentTime - lastTime) / 16.6667;
-    lastTime = currentTime;
-    update(dt);
-    draw();
-    requestAnimationFrame(gameLoop);
-}
+const blocks = [];
 
 function update(dt){
 
@@ -89,6 +82,15 @@ function draw(){
             ctx.strokeRect(blocks[i].x-blockSize/2,blocks[i].y-blockSize/2,blockSize,blockSize);
         }
     }
+}
+
+function gameLoop(){
+    let currentTime = performance.now();
+    let dt = (currentTime - lastTime) / 16.6667;
+    lastTime = currentTime;
+    update(dt);
+    draw();
+    requestAnimationFrame(gameLoop);
 }
 
 gameLoop();
