@@ -80,9 +80,10 @@ const grid = Array(8).fill().map(() => Array(8).fill(0));
 function checkForSnap(b){
 for (let y = 0; y < 8; y++) {
   for (let x = 0; x < 8; x++) {
-    if(Math.abs(b.x-(boardX+(x*blockSize+blockSize/2)))<=blockSize/4 && Math.abs(b.y-(boardY+(y*blockSize+blockSize/2)))<=blockSize/4){
+    if(Math.abs(b.x-(boardX+(x*blockSize+blockSize/2)))<=blockSize/2.1 && Math.abs(b.y-(boardY+(y*blockSize+blockSize/2)))<=blockSize/2.1){
 b.x = boardX+x*blockSize+blockSize/2;
 b.y = boardY+y*blockSize+blockSize/2;
+grid[y][x] = true;
 return true;
 }
 }
