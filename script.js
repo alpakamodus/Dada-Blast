@@ -128,10 +128,12 @@ function draw(){
     ctx.lineWidth = 2;
     ctx.strokeRect(board2X,board2Y,boardSize,boardSize/3);
 
+//blocks
+
 for (let y = 0; y < 8; y++) {
   for (let x = 0; x < 8; x++) {
 if(grid[y][x] == true){
-ctx.strokeRect(
+ctx.fillRect(
     boardX + x * blockSize,
     boardY + y * blockSize,
     blockSize,
@@ -142,7 +144,7 @@ ctx.strokeRect(
 }
 
     for(let i = 0; i < blocks.length;i++){
-            ctx.strokeRect(blocks[i].x-blockSize/2,blocks[i].y-blockSize/2,blockSize,blockSize);
+            ctx.fillRect(blocks[i].x-blockSize/2,blocks[i].y-blockSize/2,blockSize,blockSize);
 
     }
 }
