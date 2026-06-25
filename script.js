@@ -202,17 +202,8 @@ function checkForSnap(b) {
           blockSize / 2.1
       ) {
         if (checkIfFree(b, x, y)) {
-          for (
-            let h = 0;
-            h < blockLib[b.Id].length && y + blockLib[b.Id].length - 1 < 8;
-            h++
-          ) {
-            for (
-              let w = 0;
-              w < blockLib[b.Id][0].length &&
-              x + blockLib[b.Id][0].length - 1 < 8;
-              w++
-            ) {
+          for (let h = 0; h < blockLib[b.Id].length; h++) {
+            for (let w = 0; w < blockLib[b.Id][0].length; w++) {
               if (blockLib[b.Id][h][w] == true) {
                 grid[y + h][x + w] = true;
               }
@@ -232,8 +223,16 @@ function checkForSnap(b) {
 }
 
 function checkIfFree(b, x, y) {
-  for (let h = 0; h < blockLib[b.Id].length && y + h < 8; h++) {
-    for (let w = 0; w < blockLib[b.Id][0].length && x + w < 8; w++) {
+  for (
+    let h = 0;
+    h < blockLib[b.Id].length && y + blockLib[b.Id].length - 1 < 8;
+    h++
+  ) {
+    for (
+      let w = 0;
+      w < blockLib[b.Id][0].length && x + blockLib[b.Id][0].length - 1 < 8;
+      w++
+    ) {
       if (blockLib[b.Id][h][w] == true && grid[y + h][x + w] == true) {
         return false;
       }
