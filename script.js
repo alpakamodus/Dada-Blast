@@ -149,7 +149,8 @@ canvas.addEventListener("pointerdown", (e) => {
       e.clientX <= b.x + b.Width / 2 &&
       e.clientY >= b.y - b.Height / 2 &&
       e.clientY <= b.y + b.Height / 2 &&
-      !b.placed && selected == null
+      !b.placed &&
+      selected == null
     ) {
       selected = b;
     }
@@ -233,6 +234,38 @@ function checkIfFree(b, x, y) {
     }
   }
   return true;
+}
+
+function checkRow(b) {
+  let count = 0;
+  for (let y = 0; y < blocks.length; y++) {
+    for (let x = 0; x < blocks.length; x++) {
+      if (grid[y][x]) {
+        count++;
+      }
+      count = 0;
+    }
+  }
+}
+
+function checkCollum(b) {
+  let count = 0;
+  let clear = false;
+  for (let x = 0; x < blocks.length; x++) {
+    for (let y = 0; y < blocks.length; y++) {
+      if (clear) {
+        grid[y][x] = 0;
+      } else if (grid[y][x]) {
+        count++;
+      }
+    }
+    if (count >= 8) {
+      y--;
+      clear = true;
+    } else {
+      count = 0;
+    }
+  }
 }
 
 function update(dt) {
