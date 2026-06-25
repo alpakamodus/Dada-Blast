@@ -308,7 +308,8 @@ function draw() {
   ctx.strokeRect(board2X, board2Y, boardSize, boardSize / 3);
 
   //blocks
-  ctx.fillStyle = "rgba(0, 0, 0, 1)";
+  ctx.fillStyle = "orange";
+ctx.strokeStyle = "orange";
   for (let y = 0; y < 8; y++) {
     for (let x = 0; x < 8; x++) {
       if (grid[y][x] == true) {
