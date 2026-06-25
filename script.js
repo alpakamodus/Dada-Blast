@@ -294,11 +294,11 @@ function draw() {
             let y =
               b.y -
               (blockSize / 2) * blockLib[b.Id].length +
-              (blockSize / 2) * h;
+              (blockSize ) * h;
             let x =
               b.x -
               (blockSize / 2) * blockLib[b.Id][0].length +
-              (blockSize / 2) * w;
+              (blockSize ) * w;
             ctx.fillRect(x, y, blockSize, blockSize);
           }
         }
