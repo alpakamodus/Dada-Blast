@@ -26,6 +26,7 @@ let placeCount = 0;
 let lastTime = performance.now();
 
 let dragging = false;
+let selected;
 
 const blockLib = [
   [
@@ -150,8 +151,7 @@ canvas.addEventListener("pointerdown", (e) => {
       e.clientY <= b.y + b.Height / 2 &&
       !b.placed
     ) {
-      b.x = e.clientX;
-      b.y = e.clientY;
+      selected = b;
     }
   });
   dragging = true;
@@ -160,31 +160,30 @@ canvas.addEventListener("pointerdown", (e) => {
 canvas.addEventListener("pointerup", (e) => {
   canvas.releasePointerCapture(e.pointerId);
   dragging = false;
-  blocks.forEach((b) => {
+  let b = selected;
+  if (
+    e.clientX >= b.x - b.Width / 2 &&
+    e.clientX <= b.x + b.Width / 2 &&
+    e.clientY >= b.y - b.Height / 2 &&
+    e.clientY <= b.y + b.Height / 2
+  ) {
+    b.placed = checkForSnap(b);
+    selected = null;
+  }
+});
+canvas.addEventListener("pointermove", (e) => {
+  if (dragging == true) {
+    let b = selected;
     if (
       e.clientX >= b.x - b.Width / 2 &&
       e.clientX <= b.x + b.Width / 2 &&
       e.clientY >= b.y - b.Height / 2 &&
-      e.clientY <= b.y + b.Height / 2
+      e.clientY <= b.y + b.Height / 2 &&
+      !b.placed
     ) {
-      b.placed = checkForSnap(b);
+      b.x = e.clientX;
+      b.y = e.clientY;
     }
-  });
-});
-canvas.addEventListener("pointermove", (e) => {
-  if (dragging == true) {
-    blocks.forEach((b) => {
-      if (
-        e.clientX >= b.x - b.Width / 2 &&
-        e.clientX <= b.x + b.Width / 2 &&
-        e.clientY >= b.y - b.Height / 2 &&
-        e.clientY <= b.y + b.Height / 2 &&
-        !b.placed
-      ) {
-        b.x = e.clientX;
-        b.y = e.clientY;
-      }
-    });
   }
 });
 
