@@ -153,12 +153,11 @@ function draw() {
             }
         }
     }
-
-    for (let i = 0; i < blocks.length; i++) {
-        if (!blocks[i].placed) {
-            ctx.fillRect(blocks[i].x - blockSize / 2, blocks[i].y - blockSize / 2, blockSize, blockSize);
+    blocks.forEach(b => {
+        if (b.placed == false) {
+            ctx.fillRect(b.x - blockSize / 2, b.y - blockSize / 2, blockSize, blockSize);
         }
-    }
+    });
 }
 
 function gameLoop() {
