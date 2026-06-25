@@ -108,6 +108,8 @@ const blocks = [
     y: blockY,
     placed: false,
     Id: 1,
+    Height: blockSize,
+    Width: blockSize,
   },
   {
     homeX: block2X,
@@ -116,6 +118,8 @@ const blocks = [
     y: blockY,
     placed: false,
     Id: 1,
+    Height: blockSize,
+    Width: blockSize,
   },
   {
     homeX: block3X,
@@ -124,6 +128,8 @@ const blocks = [
     y: blockY,
     placed: false,
     Id: 1,
+    Height: blockSize,
+    Width: blockSize,
   },
 ];
 
@@ -138,10 +144,10 @@ document.body.addEventListener(
 canvas.addEventListener("pointerdown", (e) => {
   blocks.forEach((b) => {
     if (
-      e.clientX >= b.x - blockSize / 2 &&
-      e.clientX <= b.x + blockSize / 2 &&
-      e.clientY >= b.y - blockSize / 2 &&
-      e.clientY <= b.y + blockSize / 2 &&
+      e.clientX >= b.x - b.Width / 2 &&
+      e.clientX <= b.x + b.Width / 2 &&
+      e.clientY >= b.y - b.Height / 2 &&
+      e.clientY <= b.y + b.Height / 2 &&
       !b.placed
     ) {
       b.x = e.clientX;
@@ -156,10 +162,10 @@ canvas.addEventListener("pointerup", (e) => {
   dragging = false;
   blocks.forEach((b) => {
     if (
-      e.clientX >= b.x - blockSize / 2 &&
-      e.clientX <= b.x + blockSize / 2 &&
-      e.clientY >= b.y - blockSize / 2 &&
-      e.clientY <= b.y + blockSize / 2
+      e.clientX >= b.x - b.Width / 2 &&
+      e.clientX <= b.x + b.Width / 2 &&
+      e.clientY >= b.y - b.Height / 2 &&
+      e.clientY <= b.y + b.Height / 2
     ) {
       b.placed = checkForSnap(b);
     }
@@ -169,10 +175,10 @@ canvas.addEventListener("pointermove", (e) => {
   if (dragging == true) {
     blocks.forEach((b) => {
       if (
-        e.clientX >= b.x - blockSize / 2 &&
-        e.clientX <= b.x + blockSize / 2 &&
-        e.clientY >= b.y - blockSize / 2 &&
-        e.clientY <= b.y + blockSize / 2 &&
+        e.clientX >= b.x - b.Width / 2 &&
+        e.clientX <= b.x + b.Width / 2 &&
+        e.clientY >= b.y - b.Height / 2 &&
+        e.clientY <= b.y + b.Height / 2 &&
         !b.placed
       ) {
         b.x = e.clientX;
@@ -197,21 +203,34 @@ function checkForSnap(b) {
       ) {
         b.x = b.homeX;
         b.y = b.homeY;
-        for (let h = 0; h < blockLib[b.Id].length && y+h < 8; h++) {
-          for (let w = 0; w < blockLib[b.Id][0].length && x+w < 8; w++) {
-            if(blockLib[b.Id][h][w] == true && grid[y+h][x+w] == false){
+        if (checkIfFree(b, x, y)) {
+          for (let h = 0; h < blockLib[b.Id].length && y + h < 8; h++) {
+            for (let w = 0; w < blockLib[b.Id][0].length && x + w < 8; w++) {
+              if (blockLib[b.Id][h][w] == true) {
                 grid[y+h][x+w] = true;
+              }
             }
           }
-        }
         placeCount++;
         return true;
+        }
       }
     }
   }
   b.x = b.homeX;
   b.y = b.homeY;
   return false;
+}
+
+function checkIfFree(b, x, y) {
+  for (let h = 0; h < blockLib[b.Id].length && y + h < 8; h++) {
+    for (let w = 0; w < blockLib[b.Id][0].length && x + w < 8; w++) {
+      if (blockLib[b.Id][h][w] == true && grid[y + h][x + w] == true) {
+        return false;
+      }
+    }
+  }
+  return true;
 }
 
 function update(dt) {
@@ -221,6 +240,8 @@ function update(dt) {
       b.y = b.homeY;
       b.placed = false;
       b.Id = Math.floor(Math.random() * blockLib.length);
+      b.Height = blockLib[b.Id].length * blockSize;
+      b.Width = blockLib[b.Id][0].length * blockSize;
     });
     placeCount = 0;
   }
@@ -267,12 +288,21 @@ function draw() {
   }
   blocks.forEach((b) => {
     if (b.placed == false) {
-      ctx.fillRect(
-        b.x - blockSize / 2,
-        b.y - blockSize / 2,
-        blockSize,
-        blockSize,
-      );
+      for (let h = 0; h < blockLib[b.Id].length; h++) {
+        for (let w = 0; w < blockLib[b.Id][0].length; w++) {
+          if (blockLib[b.Id][h][w] == true) {
+            let y =
+              b.y -
+              (blockSize / 2) * blockLib[b.Id].length +
+              (blockSize / 2) * h;
+            let x =
+              b.x -
+              (blockSize / 2) * blockLib[b.Id][0].length +
+              (blockSize / 2) * w;
+            ctx.fillRect(x, y, blockSize, blockSize);
+          }
+        }
+      }
     }
   });
 }
