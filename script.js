@@ -361,6 +361,6 @@ function gameLoop() {
   update(dt);
   draw();
   requestAnimationFrame(gameLoop);
-}
+} 
 
 gameLoop();
