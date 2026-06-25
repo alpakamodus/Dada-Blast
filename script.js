@@ -1,4 +1,4 @@
-const canvas = document.getElementById("myCanvas"); 
+const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 
 canvas.width = window.innerWidth;
@@ -107,7 +107,7 @@ const blocks = [
     x: block1X,
     y: blockY,
     placed: false,
-    Id: 1,
+    Id: 0,
     Height: blockSize,
     Width: blockSize,
   },
@@ -117,7 +117,7 @@ const blocks = [
     x: block2X,
     y: blockY,
     placed: false,
-    Id: 1,
+    Id: 0,
     Height: blockSize,
     Width: blockSize,
   },
@@ -127,7 +127,7 @@ const blocks = [
     x: block3X,
     y: blockY,
     placed: false,
-    Id: 1,
+    Id: 0,
     Height: blockSize,
     Width: blockSize,
   },
