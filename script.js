@@ -201,8 +201,6 @@ function checkForSnap(b) {
         Math.abs(b.y - (boardY + (y * blockSize + blockSize / 2))) <=
           blockSize / 2.1
       ) {
-        b.x = b.homeX;
-        b.y = b.homeY;
         if (checkIfFree(b, x, y)) {
           for (let h = 0; h < blockLib[b.Id].length && y + h < 8; h++) {
             for (let w = 0; w < blockLib[b.Id][0].length && x + w < 8; w++) {
@@ -211,6 +209,8 @@ function checkForSnap(b) {
               }
             }
           }
+        b.x = b.homeX;
+        b.y = b.homeY;
         placeCount++;
         return true;
         }
