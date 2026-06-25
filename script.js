@@ -1,4 +1,4 @@
-const canvas = document.getElementById("myCanvas"); 
+const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 
 canvas.width = window.innerWidth;
@@ -143,7 +143,7 @@ function draw() {
     ctx.fillStyle = "rgba(0, 0, 0, 1)";
     for (let y = 0; y < 8; y++) {
         for (let x = 0; x < 8; x++) {
-            if (grid[y][x] == true && !b.placed) {
+            if (grid[y][x] == true) {
                 ctx.fillRect(
                     boardX + x * blockSize,
                     boardY + y * blockSize,
