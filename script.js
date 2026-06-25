@@ -223,7 +223,7 @@ function checkForSnap(b) {
 }
 
 function checkIfFree(b, x, y) {
-  if (y + blockLib[b.Id].length < 8 || w + blockLib[b.Id][0].length < 8) {
+  if (y + blockLib[b.Id].length > 8 || w + blockLib[b.Id][0].length > 8) {
     return false;
   }
   for (let h = 0; h < blockLib[b.Id].length; h++) {
