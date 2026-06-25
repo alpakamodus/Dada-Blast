@@ -291,7 +291,7 @@ function draw() {
       for (let h = 0; h < blockLib[b.Id].length; h++) {
         for (let w = 0; w < blockLib[b.Id][0].length; w++) {
           if (blockLib[b.Id][h][w] == true) {
-            let y = b.x - b.Width / 2 + h * blockSize;
+            let y = b.y - b.Height / 2 + h * blockSize;
             let x = b.x - b.Width / 2 + w * blockSize;
             ctx.fillRect(x, y, blockSize, blockSize);
           }
