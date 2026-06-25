@@ -26,7 +26,7 @@ let placeCount = 0;
 let lastTime = performance.now();
 
 let dragging = false;
-let selected;
+let selected = null;
 
 const blockLib = [
   [
@@ -149,7 +149,7 @@ canvas.addEventListener("pointerdown", (e) => {
       e.clientX <= b.x + b.Width / 2 &&
       e.clientY >= b.y - b.Height / 2 &&
       e.clientY <= b.y + b.Height / 2 &&
-      !b.placed
+      !b.placed && selected == null
     ) {
       selected = b;
     }
