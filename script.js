@@ -175,16 +175,8 @@ canvas.addEventListener("pointerup", (e) => {
 canvas.addEventListener("pointermove", (e) => {
   if (dragging == true) {
     let b = selected;
-    if (
-      e.clientX >= b.x - b.Width / 2 &&
-      e.clientX <= b.x + b.Width / 2 &&
-      e.clientY >= b.y - b.Height / 2 &&
-      e.clientY <= b.y + b.Height / 2 &&
-      !b.placed
-    ) {
-      b.x = e.clientX;
-      b.y = e.clientY;
-    }
+    b.x = e.clientX;
+    b.y = e.clientY;
   }
 });
 
@@ -238,8 +230,8 @@ function checkIfFree(b, x, y) {
 
 function checkRow() {
   let count = 0;
-  for (let y = 0; y < blocks.length; y++) {
-    for (let x = 0; x < blocks.length; x++) {
+  for (let y = 0; y < 8; y++) {
+    for (let x = 0; x < 8; x++) {
       if (grid[y][x]) {
         count++;
       }
@@ -251,8 +243,8 @@ function checkRow() {
 function checkCollum() {
   let count = 0;
   let clear = false;
-  for (let x = 0; x < blocks.length; x++) {
-    for (let y = 0; y < blocks.length; y++) {
+  for (let x = 0; x < 8; x++) {
+    for (let y = 0; y < 8; y++) {
       if (clear) {
         grid[y][x] = 0;
       } else if (grid[y][x]) {
