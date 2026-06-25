@@ -228,34 +228,40 @@ function checkIfFree(b, x, y) {
   return true;
 }
 
-function checkRow() {
-  let count = 0;
+function clearRows() {
   for (let y = 0; y < 8; y++) {
+    let full = true;
+
     for (let x = 0; x < 8; x++) {
-      if (grid[y][x]) {
-        count++;
+      if (!grid[y][x]) {
+        full = false;
+        break;
       }
-      count = 0;
+    }
+
+    if (full) {
+      for (let x = 0; x < 8; x++) {
+        grid[y][x] = 0;
+      }
     }
   }
 }
 
-function checkCollum() {
-  let count = 0;
-  let clear = false;
+function clearCols() {
   for (let x = 0; x < 8; x++) {
+    let full = true;
+
     for (let y = 0; y < 8; y++) {
-      if (clear) {
-        grid[y][x] = 0;
-      } else if (grid[y][x]) {
-        count++;
+      if (!grid[y][x]) {
+        full = false;
+        break;
       }
     }
-    if (count >= 8) {
-      y--;
-      clear = true;
-    } else {
-      count = 0;
+
+    if (full) {
+      for (let y = 0; y < 8; y++) {
+        grid[y][x] = 0;
+      }
     }
   }
 }
@@ -272,8 +278,8 @@ function update(dt) {
     });
     placeCount = 0;
   }
-  checkRow();
-  checkCollum();
+  clearRows();
+  clearCols();
 }
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
