@@ -1,4 +1,4 @@
-const canvas = document.getElementById("myCanvas"); 
+const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 
 canvas.width = window.innerWidth;
@@ -328,7 +328,7 @@ function draw() {
     }
   }
   blocks.forEach((b) => {
-    if (b.placed == false && !dragging) {
+    if (b.placed == false && (!dragging || b != selected)) {
       for (let h = 0; h < blockLib[b.Id].length; h++) {
         for (let w = 0; w < blockLib[b.Id][0].length; w++) {
           if (blockLib[b.Id][h][w] == true) {
