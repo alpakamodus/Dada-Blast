@@ -236,7 +236,7 @@ function checkIfFree(b, x, y) {
   return true;
 }
 
-function checkRow(b) {
+function checkRow() {
   let count = 0;
   for (let y = 0; y < blocks.length; y++) {
     for (let x = 0; x < blocks.length; x++) {
@@ -248,7 +248,7 @@ function checkRow(b) {
   }
 }
 
-function checkCollum(b) {
+function checkCollum() {
   let count = 0;
   let clear = false;
   for (let x = 0; x < blocks.length; x++) {
@@ -280,6 +280,8 @@ function update(dt) {
     });
     placeCount = 0;
   }
+  checkRow();
+  checkCollum();
 }
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
