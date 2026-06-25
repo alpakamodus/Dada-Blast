@@ -309,6 +309,8 @@ function draw() {
 
   //blocks
   ctx.fillStyle = "orange";
+ctx.strokeStyle = "black";
+ctx.lineWidth = 2;
   for (let y = 0; y < 8; y++) {
     for (let x = 0; x < 8; x++) {
       if (grid[y][x] == true) {
