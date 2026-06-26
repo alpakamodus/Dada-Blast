@@ -116,7 +116,7 @@ const buttons = [
     {
         displayText: "▸",
         color: "gray",
-        font: "80px Arial",
+        font: "120px Arial",
         x: canvas.width / 2 - boardSize / 2,
         y: canvas.height / 2 - boardSize / 4,
         w: boardSize,
@@ -566,7 +566,7 @@ function draw() {
         });
         ctx.font = "30px Arial";
         ctx.fillText("Score: " + score, canvas.width / 2, buttons[0].y - buttons[0].y / 2);
-        ctx.fillText("Highscore: " + score, canvas.width / 2, buttons[0].y - buttons[0].y / 4);
+        ctx.fillText("Highscore: " + localStorage.getItem("highscore"), canvas.width / 2, buttons[0].y - buttons[0].y / 4);
     }
     else if (state == 3) {
         buttons.forEach((but) => {
