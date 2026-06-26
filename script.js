@@ -203,7 +203,7 @@ canvas.addEventListener("pointerdown", (e) => {
         });
         canvas.setPointerCapture(e.pointerId);
     }
-    else if (state == 0) {
+    else if (state == 0 || state == 2) {
         const rect = canvas.getBoundingClientRect();
         const mx = e.clientX - rect.left;
         const my = e.clientY - rect.top;
