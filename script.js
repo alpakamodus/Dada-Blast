@@ -138,7 +138,18 @@ const buttons = [
                     grid[y][x] = 0;
                 }
             }
-            placeCount = 3;
+            blocks.forEach((b) => {
+                b.x = b.homeX;
+                b.y = b.homeY;
+                b.placed = false;
+                b.Id = Math.floor(Math.random() * blockLib.length);
+                b.mirrored = Math.random() < 0.5;
+                b.rotation = Math.floor(Math.random() * 4);
+                const shape = getShape(b.Id, b.rotation, b.mirrored);
+                b.Height = shape.length * blockSize;
+                b.Width = shape[0].length * blockSize;
+            });
+            placeCount = 0;
         },
         State: 2,
     },
