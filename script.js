@@ -586,11 +586,11 @@ function draw() {
             }
         });
         const rewards = [
-            { score: 5, text: "🥉 Beginner - 5 Punkte" },
-            { score: 15, text: "🥈 Amateur - 15 Punkte" },
-            { score: 30, text: "🥇 Profi - 30 Punkte" },
-            { score: 60, text: "💎 Meister - 60 Punkte" },
-            { score: 100, text: "👑 Legende - 100 Punkte" }
+            { score: 5, text: "🤗 Umarmung - 5 Punkte" },
+            { score: 10, text: "🛍 Einkaufsgutschein - 10 Punkte" },
+            { score: 20, text: "🚗 Autoputzgutschein - 20 Punkte" },
+            { score: 30, text: "🥞 Essensgutschein - 30 Punkte" },
+            { score: 50, text: "📵 Handyfreier Tag- 50 Punkte" }
         ];
 
         const highscore = Number(localStorage.getItem("highscore"));
