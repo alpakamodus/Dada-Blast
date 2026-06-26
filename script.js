@@ -481,7 +481,7 @@ function draw() {
         ctx.strokeRect(board2X, board2Y, boardSize, boardSize / 3);
 
         //blocks
-        ctx.fillStyle = "orange";
+        ctx.fillStyle = "red";
         ctx.strokeStyle = "black";
         ctx.lineWidth = 2;
         for (let y = 0; y < 8; y++) {
