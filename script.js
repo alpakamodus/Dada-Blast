@@ -602,7 +602,7 @@ function draw() {
         const boxH = canvas.height * 0.08;
 
         ctx.fillStyle = "black";
-        ctx.font = `${canvas.height * 0.005}px Arial`;
+        ctx.font = `${canvas.height * 0.06}px Arial`;
         ctx.fillText("Rewards", centerX, canvas.height * 0.07);
 
         for (let i = 0; i < rewards.length; i++) {
@@ -631,7 +631,7 @@ function draw() {
 
             // Text
             ctx.fillStyle = "black";
-            ctx.font = `${canvas.height * 0.035}px Arial`;
+            ctx.font = `${canvas.height * 0.025}px Arial`;
             ctx.fillText(rewards[i].text, centerX, y);
         }
 
