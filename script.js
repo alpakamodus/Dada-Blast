@@ -508,10 +508,10 @@ function draw() {
                 for (let h = 0; h < shape.length; h++) {
                     for (let w = 0; w < shape[0].length; w++) {
                         if (shape[h][w] == true) {
-                            let y = b.y - b.Height / 4 + h * (blockSize / 2);
-                            let x = b.x - b.Width / 4 + w * (blockSize / 2);
-                            ctx.fillRect(x, y, blockSize / 2, blockSize / 2);
-                            ctx.strokeRect(x, y, blockSize / 2, blockSize / 2);
+                            let y = b.y - b.Height / 2 * 0.4 + h * (blockSize *0.4);
+                            let x = b.x - b.Width / 2 * 0.4 + w * (blockSize *0.4);
+                            ctx.fillRect(x, y, blockSize *0.4, blockSize * 0.4);
+                            ctx.strokeRect(x, y, blockSize *0.4, blockSize * 0.4);
                         }
                     }
                 }
