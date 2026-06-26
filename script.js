@@ -162,7 +162,7 @@ const buttons = [
         color: "gold",
         font: "50px Arial",
         x: canvas.width / 2 - boardSize / 2,
-        y: canvas.height / 2 + boardSize / 4,
+        y: canvas.height / 2 + boardSize / 3,
         w: boardSize,
         h: boardSize / 4,
         action: function () {
@@ -569,6 +569,22 @@ function draw() {
         ctx.fillText("Highscore: " + score, canvas.width / 2, buttons[0].y - buttons[0].y / 4);
     }
     else if (state == 3) {
+        buttons.forEach((but) => {
+            if (but.State == 3) {
+                ctx.beginPath();
+                ctx.roundRect(but.x, but.y, but.w, but.h, 20);
+                ctx.fillStyle = "black";
+                ctx.lineWidth = 3;
+                ctx.stroke();
+                ctx.fillStyle = but.color;
+                ctx.fill();
+
+                ctx.fillStyle = "black";
+                ctx.font = but.font;
+
+                ctx.fillText(but.displayText, but.x + but.w / 2, but.y + but.h / 2 + 2);
+            }
+        });
         const rewards = [
             { score: 5, text: "🥉 Beginner - 5 Punkte" },
             { score: 15, text: "🥈 Amateur - 15 Punkte" },
