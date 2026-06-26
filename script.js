@@ -200,7 +200,7 @@ Math.abs(b.y - b.Height / 2 - (boardY + y * blockSize)) <=
 blockSize / 2.1
 ) {
 if (checkIfFree(b, x, y)) {
-const shape = getShape(b.Id,b.rotation,mirrored);
+const shape = getShape(b.Id,b.rotation,b.mirrored);
 for (let h = 0; h < shape.length; h++) {
 for (let w = 0; w < shape[0].length; w++) {
 if (shape[h][w] == true) {
@@ -222,7 +222,7 @@ return false;
 }
 
 function checkIfFree(b, x, y) {
-const shape = getShape(b.Id,b.rotation,mirrored);
+const shape = getShape(b.Id,b.rotation,b.mirrored);
 if (y + shape.length > 8 || x + shape[0].length > 8) {
 return false;
 }
@@ -297,7 +297,7 @@ b.x = b.homeX;
 b.y = b.homeY;
 b.placed = false;
 b.Id = Math.floor(Math.random() * blockLib.length);
-b.mirrored = Math.floor(Math.random() * 2);
+b.mirrored = Math.random() < 0.5;
 b.rotation = Math.floor(Math.random() * 4);
 const shape = getShape(b.Id,b.rotation,b.mirrored);
 b.Height = shape.length * blockSize;
