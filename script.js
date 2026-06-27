@@ -22,9 +22,9 @@ const board2X = boardX;
 const board2Y = boardY + boardSize + boardSize / 10;
 
 const blockY = board2Y + boardSize / 3 / 2;
-const block1X = board2X + (boardSize / 4) * 1;
+const block1X = board2X + (boardSize / 4*0.8) * 1;
 const block2X = board2X + (boardSize / 4) * 2;
-const block3X = board2X + (boardSize / 4) * 3;
+const block3X = board2X + (boardSize / 4*1.2) * 3;
 
 const blockSize = boardSize / 8;
 
@@ -287,7 +287,7 @@ canvas.addEventListener("pointermove", (e) => {
     if (dragging == true) {
         let b = selected;
         b.x = e.clientX;
-        b.y = e.clientY-b.Height;
+        b.y = e.clientY;
     }
 });
 
