@@ -287,7 +287,7 @@ canvas.addEventListener("pointermove", (e) => {
     if (dragging == true) {
         let b = selected;
         b.x = e.clientX;
-        b.y = e.clientY;
+        b.y = e.clientY-b.Height;
     }
 });
 
